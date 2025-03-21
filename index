@@ -1,0 +1,505 @@
+import React, { useState } from 'react';
+
+// Mock data for the assessment scores - Boomerang Car Rentals
+const assessmentData = {
+  // Main pillars data
+  pillars: {
+    'Strategy': 1.67,
+    'Execution': 1.75,
+    'Results': 1.5
+  },
+  // Strategy subcategories
+  strategy: {
+    'Universal Search Destinations': 2,
+    'Extended Search Destinations': 1,
+    'Search Interactions': 2
+  },
+  // Execution subcategories
+  execution: {
+    'Asset Management': 2,
+    'Technology Utilization': 1,
+    'Team Capabilities': 2,
+    'Process and Workflow': 2
+  },
+  // Results subcategories
+  results: {
+    'Performance Metrics': 2,
+    'Measurement': 1
+  }
+};
+
+// Colors to match the website
+const colors = {
+  background: '#F6F2E6',
+  darkBackground: '#333333',
+  orange: '#F05B28',
+  text: '#333333',
+  lightText: '#FFFFFF'
+};
+
+// Generic Radar Chart component
+const RadarChart = ({ title, data, maxValue = 5 }) => {
+  const categories = Object.keys(data);
+  const values = Object.values(data);
+  
+  // Get coordinates for the polygon points
+  const getPolygonPoints = (values) => {
+    const angleStep = (2 * Math.PI) / values.length;
+    const center = 100;
+    const radius = 80;
+    
+    return values.map((value, i) => {
+      const angle = i * angleStep - Math.PI/2;
+      const distance = (value / maxValue) * radius;
+      const x = center + distance * Math.cos(angle);
+      const y = center + distance * Math.sin(angle);
+      return `${x},${y}`;
+    }).join(' ');
+  };
+  
+  // Create axis lines and labels
+  const createAxes = () => {
+    const center = 100;
+    const radius = 80;
+    const angleStep = (2 * Math.PI) / categories.length;
+    
+    return categories.map((category, i) => {
+      const angle = i * angleStep - Math.PI/2;
+      const x2 = center + radius * Math.cos(angle);
+      const y2 = center + radius * Math.sin(angle);
+      
+      // Label positioning
+      const labelDistance = radius + 20;
+      const labelX = center + labelDistance * Math.cos(angle);
+      const labelY = center + labelDistance * Math.sin(angle);
+      
+      // Adjust text anchor based on position
+      let textAnchor = "middle";
+      if (labelX < center - 10) textAnchor = "end";
+      else if (labelX > center + 10) textAnchor = "start";
+      
+      return (
+        <React.Fragment key={i}>
+          <line 
+            x1={center} 
+            y1={center} 
+            x2={x2} 
+            y2={y2} 
+            stroke="rgba(51, 51, 51, 0.2)" 
+            strokeWidth="1" 
+          />
+          <text 
+            x={labelX} 
+            y={labelY} 
+            textAnchor={textAnchor} 
+            dominantBaseline="middle" 
+            fontSize="10" 
+            fontWeight="normal" 
+            fontFamily="Archivo, sans-serif"
+            fill={colors.text}
+          >
+            {category}
+          </text>
+        </React.Fragment>
+      );
+    });
+  };
+  
+  // Create concentric circles for reference
+  const createReferenceCircles = () => {
+    const center = 100;
+    const maxRadius = 80;
+    
+    return [1, 2, 3, 4, 5].map((value) => {
+      const radius = (value / 5) * maxRadius;
+      return (
+        <React.Fragment key={value}>
+          <circle 
+            cx={center} 
+            cy={center} 
+            r={radius} 
+            fill="none" 
+            stroke="rgba(51, 51, 51, 0.2)" 
+            strokeWidth="1" 
+          />
+          <text 
+            x={center} 
+            y={center - radius - 5} 
+            textAnchor="middle" 
+            dominantBaseline="middle" 
+            fontSize="8" 
+            fill={colors.text}
+          >
+            {value}
+          </text>
+        </React.Fragment>
+      );
+    });
+  };
+  
+  return (
+    <div className="bg-white p-4 rounded-lg shadow-md h-full">
+      <h3 className="text-center text-base font-medium mb-2">{title}</h3>
+      <svg width="200" height="250" viewBox="0 0 200 250">
+        {/* Reference circles */}
+        {createReferenceCircles()}
+        
+        {/* Axis lines and labels */}
+        {createAxes()}
+        
+        {/* Data polygon */}
+        <polygon 
+          points={getPolygonPoints(values)} 
+          fill="rgba(240, 91, 40, 0.3)" 
+          stroke={colors.orange} 
+          strokeWidth="2" 
+        />
+        
+        {/* Data points */}
+        {values.map((value, i) => {
+          const angleStep = (2 * Math.PI) / values.length;
+          const angle = i * angleStep - Math.PI/2;
+          const center = 100;
+          const radius = 80;
+          const distance = (value / maxValue) * radius;
+          const x = center + distance * Math.cos(angle);
+          const y = center + distance * Math.sin(angle);
+          
+          return (
+            <circle
+              key={i}
+              cx={x}
+              cy={y}
+              r="3"
+              fill={colors.orange}
+            />
+          );
+        })}
+        
+        {/* Category scores */}
+        {values.map((value, i) => {
+          const angleStep = (2 * Math.PI) / values.length;
+          const angle = i * angleStep - Math.PI/2;
+          const center = 100;
+          const radius = 80;
+          const distance = (value / maxValue) * radius;
+          const x = center + distance * Math.cos(angle);
+          const y = center + distance * Math.sin(angle);
+          
+          // Position score label slightly away from the point
+          const scoreDistance = distance + 10;
+          const scoreX = center + scoreDistance * Math.cos(angle);
+          const scoreY = center + scoreDistance * Math.sin(angle);
+          
+          return (
+            <text
+              key={`score-${i}`}
+              x={scoreX}
+              y={scoreY}
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fontSize="10"
+              fontWeight="bold"
+              fill={colors.orange}
+            >
+              {value.toFixed(1)}
+            </text>
+          );
+        })}
+      </svg>
+    </div>
+  );
+};
+
+// Main Dashboard Component
+const SEPDashboard = () => {
+  const [activePillar, setActivePillar] = useState('main');
+  
+  // Calculate overall score
+  const overallScore = (
+    assessmentData.pillars.Strategy + 
+    assessmentData.pillars.Execution + 
+    assessmentData.pillars.Results
+  ) / 3;
+  
+  return (
+    <div className="min-h-screen" style={{ backgroundColor: colors.background, fontFamily: 'Archivo, sans-serif' }}>
+      {/* Orange top bar */}
+      <div className="h-5" style={{ backgroundColor: colors.orange }}></div>
+      
+      {/* Header with logo */}
+      <div className="p-4" style={{ backgroundColor: colors.darkBackground }}>
+        <div className="flex items-center">
+          <div className="flex items-center">
+            <div className="w-10 h-11">
+              <svg viewBox="0 0 225 260" xmlns="http://www.w3.org/2000/svg">
+                <path d="M112.5 0L225 64.9V194.8L112.5 259.7L0 194.8V64.9L112.5 0Z" fill="#F05B28"/>
+                <path d="M77 113.5H149M77 146.5H149M77 113.5H149V146.5H77V113.5Z" stroke="white" strokeWidth="12"/>
+              </svg>
+            </div>
+            <div className="ml-3 text-white">
+              <div className="text-sm">In Marketing</div>
+              <div className="text-lg font-medium">We Trust</div>
+            </div>
+          </div>
+          <div className="ml-8 text-white text-lg font-medium">
+            Search Everywhere Performance Assessment
+          </div>
+        </div>
+      </div>
+      
+      {/* Brand and overall score panel */}
+      <div className="mx-6 mt-6 p-6 bg-white rounded-lg shadow-md">
+        <div className="flex justify-between items-start mb-4">
+          <h1 className="text-2xl font-semibold" style={{ color: colors.text }}>Boomerang Car Rentals</h1>
+          <div className="text-center">
+            <div className="text-sm mb-1">Overall Performance</div>
+            <div className="inline-block rounded-full p-1 w-16 h-16 flex items-center justify-center" 
+                 style={{ backgroundColor: `rgba(240, 91, 40, ${overallScore/5})`, border: `2px solid ${colors.orange}` }}>
+              <span className="text-lg font-bold" style={{ color: colors.text }}>{overallScore.toFixed(1)}</span>
+            </div>
+          </div>
+        </div>
+        
+        {/* Performance Summary */}
+        <div className="mb-6">
+          <h2 className="text-lg font-medium mb-2">Performance Summary</h2>
+          <p className="text-sm mb-4">
+            Boomerang Car Rentals is underperforming across all key search areas with an overall score of 1.64 out of 5. 
+            The assessment reveals significant weaknesses in Extended Search Destinations (score: 1), Technology Utilization (score: 1), 
+            and Measurement (score: 1). The company has basic implementation in Universal Search Destinations and Asset Management, 
+            but requires substantial improvements across all pillars. Most urgent attention is needed in developing strategies for 
+            platforms like Google Shopping, investing in specialized SEO tools, and establishing robust analytics and reporting systems.
+          </p>
+          <div className="text-center">
+            <a href="/full-report" target="_blank" rel="noopener noreferrer">
+              <button 
+                className="px-4 py-2 rounded text-white"
+                style={{ backgroundColor: colors.orange }}
+              >
+                View Full Report
+              </button>
+            </a>
+          </div>
+        </div>
+        
+        {/* Pillar selector */}
+        <div className="flex border-b mb-4">
+          <button 
+            className={`py-2 px-4 ${activePillar === 'main' ? 'border-b-2 font-medium' : ''}`} 
+            style={{ borderColor: activePillar === 'main' ? colors.orange : 'transparent' }}
+            onClick={() => setActivePillar('main')}
+          >
+            Overall
+          </button>
+          <button 
+            className={`py-2 px-4 ${activePillar === 'strategy' ? 'border-b-2 font-medium' : ''}`} 
+            style={{ borderColor: activePillar === 'strategy' ? colors.orange : 'transparent' }}
+            onClick={() => setActivePillar('strategy')}
+          >
+            Strategy
+          </button>
+          <button 
+            className={`py-2 px-4 ${activePillar === 'execution' ? 'border-b-2 font-medium' : ''}`} 
+            style={{ borderColor: activePillar === 'execution' ? colors.orange : 'transparent' }}
+            onClick={() => setActivePillar('execution')}
+          >
+            Execution
+          </button>
+          <button 
+            className={`py-2 px-4 ${activePillar === 'results' ? 'border-b-2 font-medium' : ''}`} 
+            style={{ borderColor: activePillar === 'results' ? colors.orange : 'transparent' }}
+            onClick={() => setActivePillar('results')}
+          >
+            Results
+          </button>
+        </div>
+        
+        {/* Charts section */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {activePillar === 'main' && (
+            <>
+              <RadarChart title="Overall Performance" data={assessmentData.pillars} />
+              <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+                <h3 className="font-medium mb-3">Pillar Breakdown</h3>
+                <div className="space-y-4">
+                  {Object.entries(assessmentData.pillars).map(([category, score]) => (
+                    <div key={category}>
+                      <div className="flex justify-between mb-1">
+                        <span>{category}</span>
+                        <span className="font-medium">{score.toFixed(1)}/5</span>
+                      </div>
+                      <div className="bg-gray-200 h-3 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full rounded-full" 
+                          style={{ 
+                            backgroundColor: colors.orange,
+                            width: `${(score / 5) * 100}%` 
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                {/* Key weaknesses */}
+                <div className="mt-6">
+                  <h3 className="font-medium mb-2">Key Improvement Areas</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li><span className="font-medium">Extended Search Destinations (Score: 1)</span> - Develop clear objectives and strategy for Google Shopping and marketplace presence</li>
+                    <li><span className="font-medium">Technology Utilization (Score: 1)</span> - Invest in specialized SEO and social media management tools</li>
+                    <li><span className="font-medium">Measurement (Score: 1)</span> - Configure analytics properly and establish regular reporting processes</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {activePillar === 'strategy' && (
+            <>
+              <RadarChart title="Strategy Performance" data={assessmentData.strategy} />
+              <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+                <h3 className="font-medium mb-3">Strategy Breakdown</h3>
+                <div className="space-y-4">
+                  {Object.entries(assessmentData.strategy).map(([category, score]) => (
+                    <div key={category}>
+                      <div className="flex justify-between mb-1">
+                        <span>{category}</span>
+                        <span className="font-medium">{score.toFixed(1)}/5</span>
+                      </div>
+                      <div className="bg-gray-200 h-3 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full rounded-full" 
+                          style={{ 
+                            backgroundColor: colors.orange,
+                            width: `${(score / 5) * 100}%` 
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-6">
+                  <h3 className="font-medium mb-2">Strategy Recommendations</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li>Develop specific objectives and KPIs for each search destination</li>
+                    <li>Create a comprehensive strategy for platforms like Google Shopping and Amazon</li>
+                    <li>Enhance mobile optimization and explore voice search opportunities</li>
+                    <li>Document all strategies and create performance baselines</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {activePillar === 'execution' && (
+            <>
+              <RadarChart title="Execution Performance" data={assessmentData.execution} />
+              <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+                <h3 className="font-medium mb-3">Execution Breakdown</h3>
+                <div className="space-y-4">
+                  {Object.entries(assessmentData.execution).map(([category, score]) => (
+                    <div key={category}>
+                      <div className="flex justify-between mb-1">
+                        <span>{category}</span>
+                        <span className="font-medium">{score.toFixed(1)}/5</span>
+                      </div>
+                      <div className="bg-gray-200 h-3 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full rounded-full" 
+                          style={{ 
+                            backgroundColor: colors.orange,
+                            width: `${(score / 5) * 100}%` 
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-6">
+                  <h3 className="font-medium mb-2">Execution Recommendations</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li>Invest in specialized SEO, paid media, and analytics tools</li>
+                    <li>Create platform-specific assets for different search destinations</li>
+                    <li>Provide targeted training to improve team capabilities</li>
+                    <li>Document processes and clearly define roles and responsibilities</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+          
+          {activePillar === 'results' && (
+            <>
+              <RadarChart title="Results Performance" data={assessmentData.results} />
+              <div className="md:col-span-2 bg-white p-4 rounded-lg shadow-md">
+                <h3 className="font-medium mb-3">Results Breakdown</h3>
+                <div className="space-y-4">
+                  {Object.entries(assessmentData.results).map(([category, score]) => (
+                    <div key={category}>
+                      <div className="flex justify-between mb-1">
+                        <span>{category}</span>
+                        <span className="font-medium">{score.toFixed(1)}/5</span>
+                      </div>
+                      <div className="bg-gray-200 h-3 rounded-full overflow-hidden">
+                        <div 
+                          className="h-full rounded-full" 
+                          style={{ 
+                            backgroundColor: colors.orange,
+                            width: `${(score / 5) * 100}%` 
+                          }}
+                        ></div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                
+                <div className="mt-6">
+                  <h3 className="font-medium mb-2">Results Recommendations</h3>
+                  <ul className="list-disc pl-5 space-y-1 text-sm">
+                    <li>Configure analytics properly with event tracking</li>
+                    <li>Establish regular reporting cycles and data validation processes</li>
+                    <li>Define detailed metrics like conversion rates and customer acquisition costs</li>
+                    <li>Compare performance against industry benchmarks</li>
+                    <li>Use data to continuously optimize strategies and execution</li>
+                  </ul>
+                </div>
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      
+      {/* Score Interpretation */}
+      <div className="mx-6 mt-6 mb-6 bg-white p-6 rounded-lg shadow-md">
+        <h3 className="font-medium mb-3">Score Interpretation</h3>
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-2">
+          {[1, 2, 3, 4, 5].map(score => (
+            <div key={score} className="flex items-center">
+              <div className="w-6 h-6 rounded-full flex items-center justify-center mr-2" 
+                   style={{ backgroundColor: `rgba(240, 91, 40, ${score/5})`, border: `1px solid ${colors.orange}` }}>
+                <span className="text-xs font-bold" style={{ color: score > 3 ? 'white' : colors.text }}>{score}</span>
+              </div>
+              <span className="text-sm">
+                {score === 1 && "Poor"}
+                {score === 2 && "Below Average"}
+                {score === 3 && "Average"}
+                {score === 4 && "Good"}
+                {score === 5 && "Excellent"}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+      
+      {/* Footer */}
+      <div className="py-6 text-center text-sm" style={{ color: colors.text }}>
+        © 2025 In Marketing We Trust. All rights reserved.
+      </div>
+    </div>
+  );
+};
+
+export default SEPDashboard;
