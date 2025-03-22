@@ -1,6 +1,3 @@
-/* Import Archivo font */
-@import url('https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap');
-
 /* Base styles */
 :root {
     --orange: #F05B28;
@@ -16,6 +13,7 @@ body {
     padding: 0;
     background-color: var(--light-bg);
     color: var(--text);
+    line-height: 1.6;
 }
 
 /* Make headings extra bold */
@@ -31,20 +29,20 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-/* Header styling - Multiple approaches to ensure it works across files */
+/* Header styling */
 .header {
     background-color: var(--dark-bg);
-    padding: 15px 50px;
+    padding: 0;
     margin: 0;
 }
 
-
-/* Navigation styles */
+/* Header container */
 .header-container {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 20px 15px;
+    padding: 20px;
+    flex-wrap: wrap;
 }
 
 .left-section {
@@ -58,6 +56,33 @@ h1, h2, h3, h4, h5, h6 {
     margin-right: 30px;
 }
 
+.logo {
+    width: 40px;
+    height: 44px;
+}
+
+.logo-text {
+    margin-left: 15px;
+    color: var(--light-text);
+}
+
+.logo-text .line1 {
+    font-size: 14px;
+}
+
+.logo-text .line2 {
+    font-size: 18px;
+    font-weight: 800;
+}
+
+.report-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--light-text);
+    margin: 0;
+}
+
+/* Navigation styles */
 .main-nav {
     margin-left: auto;
 }
@@ -92,102 +117,11 @@ h1, h2, h3, h4, h5, h6 {
     font-weight: 700;
 }
 
-.report-title {
-    font-size: 22px;
-    font-weight: 800;
-    color: var(--light-text);
-    margin: 0;
-}
-
-/* Responsive adjustments */
-@media (max-width: 992px) {
-    .header-container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .left-section {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-    
-    .logo-container {
-        margin-bottom: 10px;
-    }
-    
-    .report-title {
-        margin: 10px 0;
-    }
-    
-    .main-nav {
-        margin-left: 0;
-        margin-top: 15px;
-        width: 100%;
-    }
-    
-    .nav-menu {
-        flex-wrap: wrap;
-    }
-    
-    .nav-item {
-        margin-left: 0;
-        margin-right: 20px;
-        margin-bottom: 10px;
-    }
-}
-
-/* Additional header container targeting for index.html */
-.header .container, .header > div {
-    padding-top: 25px;
-    padding-bottom: 25px;
-}
-
+/* Container */
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 20px 20px;
-}
-
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    width: 40px;
-    height: 44px;
-}
-
-.logo-text {
-    margin-left: 15px;
-    color: var(--light-text);
-}
-
-.logo-text .line1 {
-    font-size: 14px;
-}
-
-.logo-text .line2 {
-    font-size: 18px;
-    font-weight: 800;
-}
-
-.report-title {
-    margin-left: 30px;
-    color: var(--light-text);
-    font-size: 20px;
-    font-weight: 800;
-}
-
-/* Main content area */
-.container {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 20px;
-}
-
-.container > .dashboard-card:first-of-type {
-    margin-top: 30px;
+    padding: 30px 20px;
 }
 
 /* Dashboard card styling */
@@ -254,7 +188,7 @@ h1, h2, h3, h4, h5, h6 {
     text-align: center;
 }
 
-.btn {
+.btn, .cta-button {
     display: inline-block;
     background-color: var(--orange);
     color: white;
@@ -268,7 +202,7 @@ h1, h2, h3, h4, h5, h6 {
     text-decoration: none;
 }
 
-.btn:hover {
+.btn:hover, .cta-button:hover {
     opacity: 0.9;
 }
 
@@ -422,7 +356,130 @@ h1, h2, h3, h4, h5, h6 {
     color: #666;
 }
 
+/* Report content card */
+.report-card {
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    padding: 30px;
+    margin-bottom: 25px;
+}
+
+/* Report header */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+}
+
+.client-info h1 {
+    font-size: 28px;
+    margin: 0 0 5px 0;
+}
+
+.client-info p {
+    margin: 0;
+    color: #666;
+}
+
+.date-info {
+    text-align: right;
+}
+
+/* Executive summary */
+.executive-summary {
+    background-color: var(--dark-bg);
+    color: var(--light-text);
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+}
+
+.executive-summary h2 {
+    color: var(--light-text);
+    margin-top: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+}
+
+/* Section styling */
+.section {
+    margin-bottom: 30px;
+}
+
+.section h2 {
+    font-size: 24px;
+    border-bottom: 2px solid var(--orange);
+    padding-bottom: 10px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+
+.section h3 {
+    font-size: 20px;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.section h4 {
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Back button */
+.back-link {
+    display: inline-block;
+    margin-bottom: 20px;
+    color: var(--orange);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.back-link:hover {
+    text-decoration: underline;
+}
+
 /* Media queries for responsiveness */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .left-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .logo-container {
+        margin-bottom: 10px;
+    }
+    
+    .report-title {
+        margin: 10px 0;
+    }
+    
+    .main-nav {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        margin-left: 0;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
+}
+
 @media (max-width: 768px) {
     .charts-container {
         grid-template-columns: 1fr;
@@ -434,18 +491,12 @@ h1, h2, h3, h4, h5, h6 {
         text-align: center;
     }
     
-    .tabs {
-        overflow-x: auto;
-        white-space: nowrap;
-    }
-    
-    .header-container {
+    .report-header {
         flex-direction: column;
-        align-items: flex-start;
     }
     
-    .report-title {
-        margin-left: 0;
-        margin-top: 10px;
+    .date-info {
+        text-align: left;
+        margin-top: 15px;
     }
 }
