@@ -13,10 +13,6 @@
             --light-bg: #F6F2E6;
             --text: #333333;
             --light-text: #FFFFFF;
-            --blue: #2D6CDF;
-            --green: #37A169;
-            --purple: #8A63D2;
-            --teal: #2A9D8F;
         }
         
         body {
@@ -194,20 +190,11 @@
             font-weight: 700;
         }
         
-        .phase-1 .phase-header {
-            background-color: var(--blue);
-        }
-        
-        .phase-2 .phase-header {
-            background-color: var(--orange);
-        }
-        
-        .phase-3 .phase-header {
-            background-color: var(--green);
-        }
-        
+        .phase-1 .phase-header, 
+        .phase-2 .phase-header, 
+        .phase-3 .phase-header, 
         .phase-4 .phase-header {
-            background-color: var(--purple);
+            background-color: var(--orange);
         }
         
         .phase-content {
@@ -296,6 +283,7 @@
             color: white;
             font-weight: bold;
             font-size: 12px;
+            background-color: var(--orange);
         }
         
         .timeline-segment {
@@ -303,6 +291,7 @@
             height: 6px;
             top: 0;
             border-radius: 3px;
+            background-color: var(--orange);
         }
         
         .timeline-label {
@@ -348,6 +337,7 @@
             border-radius: 50%;
             color: white;
             font-size: 24px;
+            background-color: var(--orange);
         }
         
         .impact-value {
@@ -411,6 +401,7 @@
             color: white;
             font-weight: bold;
             font-size: 20px;
+            background-color: var(--orange);
         }
         
         .step-title {
@@ -647,14 +638,14 @@
                 <!-- Timeline visualization -->
                 <div class="timeline-container">
                     <div class="timeline">
-                        <div class="timeline-segment" style="left: 0; width: 25%; background-color: #2D6CDF;"></div>
-                        <div class="timeline-segment" style="left: 25%; width: 50%; background-color: #F05B28;"></div>
-                        <div class="timeline-segment" style="left: 75%; width: 25%; background-color: #37A169;"></div>
+                        <div class="timeline-segment" style="left: 0; width: 25%;"></div>
+                        <div class="timeline-segment" style="left: 25%; width: 50%;"></div>
+                        <div class="timeline-segment" style="left: 75%; width: 25%;"></div>
                         
-                        <div class="timeline-marker" style="left: 0%; background-color: #2D6CDF;">1</div>
-                        <div class="timeline-marker" style="left: 25%; background-color: #F05B28;">2</div>
-                        <div class="timeline-marker" style="left: 75%; background-color: #37A169;">3</div>
-                        <div class="timeline-marker" style="left: 100%; background-color: #8A63D2;">4</div>
+                        <div class="timeline-marker" style="left: 0%;">1</div>
+                        <div class="timeline-marker" style="left: 25%;">2</div>
+                        <div class="timeline-marker" style="left: 75%;">3</div>
+                        <div class="timeline-marker" style="left: 100%;">4</div>
                         
                         <div class="timeline-label" style="left: 12.5%;">Strategy Development</div>
                         <div class="timeline-label" style="left: 50%;">Execution Enhancement</div>
@@ -849,22 +840,22 @@
                             <div class="process-line"></div>
                             
                             <div class="process-step">
-                                <div class="step-circle" style="background-color: #2D6CDF;">1</div>
+                                <div class="step-circle">1</div>
                                 <div class="step-title">Analyze & Assess</div>
                             </div>
                             
                             <div class="process-step">
-                                <div class="step-circle" style="background-color: #F05B28;">2</div>
+                                <div class="step-circle">2</div>
                                 <div class="step-title">Strategize & Plan</div>
                             </div>
                             
                             <div class="process-step">
-                                <div class="step-circle" style="background-color: #37A169;">3</div>
+                                <div class="step-circle">3</div>
                                 <div class="step-title">Implement & Execute</div>
                             </div>
                             
                             <div class="process-step">
-                                <div class="step-circle" style="background-color: #8A63D2;">4</div>
+                                <div class="step-circle">4</div>
                                 <div class="step-title">Measure & Optimize</div>
                             </div>
                         </div>
@@ -879,7 +870,7 @@
                 
                 <div class="impact-container">
                     <div class="impact-card">
-                        <div class="impact-icon" style="background-color: #2D6CDF;">
+                        <div class="impact-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M3 10H5V16H3V10ZM11 4H13V16H11V4ZM7 7H9V16H7V7ZM15 13H17V16H15V13ZM19 9H21V16H19V9Z" fill="white"/>
                             </svg>
@@ -890,7 +881,7 @@
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-icon" style="background-color: #F05B28;">
+                        <div class="impact-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M12 2L1 12H4V21H11V15H13V21H20V12H23L12 2Z" fill="white"/>
                             </svg>
@@ -901,7 +892,7 @@
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-icon" style="background-color: #37A169;">
+                        <div class="impact-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M21 18V21H3V18H21ZM6.596 3.904L8.01 5.318L4.828 8.5L8.01 11.682L6.596 13.096L2 8.5L6.596 3.904ZM17.404 3.904L22 8.5L17.404 13.096L15.99 11.682L19.172 8.5L15.99 5.318L17.404 3.904Z" fill="white"/>
                             </svg>
@@ -912,7 +903,7 @@
                     </div>
                     
                     <div class="impact-card">
-                        <div class="impact-icon" style="background-color: #8A63D2;">
+                        <div class="impact-icon">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M16 2V4H20.586L9.301 15.285L6 11.984L1.707 16.277L3.121 17.691L6 14.813L9.299 18.113L22 5.413V10H24V2H16Z" fill="white"/>
                             </svg>
