@@ -27,14 +27,27 @@ h1, h2, h3, h4, h5, h6 {
 .orange-bar {
     height: 20px;
     background-color: var(--orange);
+    margin: 0;
+    padding: 0;
 }
 
 /* Header styling */
 .header {
     background-color: var(--dark-bg);
-    padding: 15px 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.header-container {
     display: flex;
     align-items: center;
+    padding: 15px 0;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
 }
 
 .logo-container {
@@ -43,8 +56,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .logo {
-    width: 50px;
-    height: 55px;
+    width: 40px;
+    height: 44px;
 }
 
 .logo-text {
@@ -72,7 +85,11 @@ h1, h2, h3, h4, h5, h6 {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 30px 20px;
+    padding: 0 20px;
+}
+
+.container > .dashboard-card:first-of-type {
+    margin-top: 30px;
 }
 
 /* Dashboard card styling */
@@ -135,6 +152,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Buttons */
+.button-container {
+    text-align: center;
+}
+
 .btn {
     display: inline-block;
     background-color: var(--orange);
@@ -160,16 +181,30 @@ h1, h2, h3, h4, h5, h6 {
     margin-bottom: 20px;
 }
 
-.tab {
+.tab-btn {
     padding: 10px 20px;
+    background: none;
+    border: none;
     border-bottom: 2px solid transparent;
     cursor: pointer;
+    font-family: 'Archivo', sans-serif;
     font-weight: 500;
+    font-size: 16px;
+    outline: none;
 }
 
-.tab.active {
+.tab-btn.active {
     border-bottom-color: var(--orange);
     font-weight: 700;
+}
+
+/* Tab content */
+.tab-content {
+    display: none;
+}
+
+.tab-content.active {
+    display: block;
 }
 
 /* Charts container */
@@ -181,7 +216,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 /* Radar chart container */
-.radar-container {
+.radar-chart-container {
     background-color: white;
     border-radius: 8px;
     padding: 20px;
@@ -304,5 +339,15 @@ h1, h2, h3, h4, h5, h6 {
     .tabs {
         overflow-x: auto;
         white-space: nowrap;
+    }
+    
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .report-title {
+        margin-left: 0;
+        margin-top: 10px;
     }
 }
