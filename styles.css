@@ -31,17 +31,29 @@ h1, h2, h3, h4, h5, h6 {
     padding: 0;
 }
 
-/* Header styling */
+/* Header styling - Multiple approaches to ensure it works across files */
 .header {
     background-color: var(--dark-bg);
     padding: 15px 50px;
     margin: 0;
 }
 
+/* Target the header directly for more specificity */
+header, div.header {
+    padding-top: 25px !important;
+    padding-bottom: 25px !important;
+}
+
 .header-container {
     display: flex;
     align-items: center;
-    padding: 25px 15px; /* Increased top/bottom padding from 15px to 25px */
+    padding: 25px 15px; /* Increased padding */
+}
+
+/* Additional header container targeting for index.html */
+.header .container, .header > div {
+    padding-top: 25px;
+    padding-bottom: 25px;
 }
 
 .container {
