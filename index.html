@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boomerang Car Rentals - Search Everywhere Performance Assessment</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Orange bar at the top -->
+    <div class="orange-bar"></div>
+    
+    <!-- Header with logo -->
+    <div class="header">
+        <div class="logo-container">
+            <!-- Logo - using embedded SVG for reliability -->
+            <svg width="50" height="55" viewBox="0 0 225 260" xmlns="http://www.w3.org/2000/svg" class="logo">
+                <path d="M112.5 0L225 64.9V194.8L112.5 259.7L0 194.8V64.9L112.5 0Z" fill="#F05B28"/>
+                <path d="M77 113.5H149M77 146.5H149M77 113.5H149V146.5H77V113.5Z" stroke="white" stroke-width="12"/>
+            </svg>
+            <div class="logo-text">
+                <div class="line1">In Marketing</div>
+                <div class="line2">We Trust</div>
+            </div>
+        </div>
+        <div class="report-title">Search Everywhere Performance Assessment</div>
+    </div>
+    
+    <!-- Dashboard content -->
+    <div class="container">
+        <!-- Client info and overall score -->
+        <div class="dashboard-card">
+            <div class="client-header">
+                <h1 class="client-name">Boomerang Car Rentals</h1>
+                <div class="overall-score">
+                    <div class="score-label">Overall Performance</div>
+                    <div class="score-circle" style="background-color: rgba(240, 91, 40, 0.33);">1.64</div>
+                </div>
+            </div>
+            
+            <!-- Performance summary -->
+            <div class="summary">
+                <h2>Performance Summary</h2>
+                <p>
+                    Boomerang Car Rentals is underperforming across all key search areas with an overall score of 1.64 out of 5. 
+                    The assessment reveals significant weaknesses in Extended Search Destinations (score: 1), Technology Utilization (score: 1), 
+                    and Measurement (score: 1). The company has basic implementation in Universal Search Destinations and Asset Management, 
+                    but requires substantial improvements across all pillars. Most urgent attention is needed in developing strategies for 
+                    platforms like Google Shopping, investing in specialized SEO tools, and establishing robust analytics and reporting systems.
+                </p>
+                <div style="text-align: center;">
+                    <a href="full-report.html" class="btn">View Full Report</a>
+                </div>
+            </div>
+            
+            <!-- Pillar tabs -->
+            <div class="tabs">
+                <div class="tab active" data-tab="main">Overall</div>
+                <div class="tab" data-tab="strategy">Strategy</div>
+                <div class="tab" data-tab="execution">Execution</div>
+                <div class="tab" data-tab="results">Results</div>
+            </div>
+            
+            <!-- Tab content containers -->
+            <div class="tab-content" id="main-tab">
+                <div class="charts-container">
+                    <!-- Radar chart for main pillars -->
+                    <div class="radar-container">
+                        <h3 class="radar-title">Overall Performance</h3>
+                        <div id="main-radar-chart"></div>
+                    </div>
+                    
+                    <!-- Breakdown of main pillars -->
+                    <div class="breakdown-container">
+                        <h3 class="breakdown-title">Pillar Breakdown</h3>
+                        
+                        <!-- Strategy score bar -->
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Strategy</span>
+                                <span>1.67/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 33.4%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Execution score bar -->
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Execution</span>
+                                <span>1.75/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 35.0%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Results score bar -->
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Results</span>
+                                <span>1.5/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 30.0%"></div>
+                            </div>
+                        </div>
+                        
+                        <!-- Improvement areas -->
+                        <div class="recommendations">
+                            <h3>Key Improvement Areas</h3>
+                            <ul>
+                                <li><strong>Extended Search Destinations (Score: 1)</strong> - Develop clear objectives and strategy for Google Shopping and marketplace presence</li>
+                                <li><strong>Technology Utilization (Score: 1)</strong> - Invest in specialized SEO and social media management tools</li>
+                                <li><strong>Measurement (Score: 1)</strong> - Configure analytics properly and establish regular reporting processes</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Strategy tab content (hidden initially) -->
+            <div class="tab-content" id="strategy-tab" style="display: none;">
+                <div class="charts-container">
+                    <!-- Radar chart for strategy -->
+                    <div class="radar-container">
+                        <h3 class="radar-title">Strategy Performance</h3>
+                        <div id="strategy-radar-chart"></div>
+                    </div>
+                    
+                    <!-- Breakdown of strategy components -->
+                    <div class="breakdown-container">
+                        <h3 class="breakdown-title">Strategy Breakdown</h3>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Universal Search Destinations</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Extended Search Destinations</span>
+                                <span>1/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Search Interactions</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendations">
+                            <h3>Strategy Recommendations</h3>
+                            <ul>
+                                <li>Develop specific objectives and KPIs for each search destination</li>
+                                <li>Create a comprehensive strategy for platforms like Google Shopping and Amazon</li>
+                                <li>Enhance mobile optimization and explore voice search opportunities</li>
+                                <li>Document all strategies and create performance baselines</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Execution tab content (hidden initially) -->
+            <div class="tab-content" id="execution-tab" style="display: none;">
+                <div class="charts-container">
+                    <!-- Radar chart for execution -->
+                    <div class="radar-container">
+                        <h3 class="radar-title">Execution Performance</h3>
+                        <div id="execution-radar-chart"></div>
+                    </div>
+                    
+                    <!-- Breakdown of execution components -->
+                    <div class="breakdown-container">
+                        <h3 class="breakdown-title">Execution Breakdown</h3>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Asset Management</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Technology Utilization</span>
+                                <span>1/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Team Capabilities</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Process and Workflow</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendations">
+                            <h3>Execution Recommendations</h3>
+                            <ul>
+                                <li>Invest in specialized SEO, paid media, and analytics tools</li>
+                                <li>Create platform-specific assets for different search destinations</li>
+                                <li>Provide targeted training to improve team capabilities</li>
+                                <li>Document processes and clearly define roles and responsibilities</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Results tab content (hidden initially) -->
+            <div class="tab-content" id="results-tab" style="display: none;">
+                <div class="charts-container">
+                    <!-- Radar chart for results -->
+                    <div class="radar-container">
+                        <h3 class="radar-title">Results Performance</h3>
+                        <div id="results-radar-chart"></div>
+                    </div>
+                    
+                    <!-- Breakdown of results components -->
+                    <div class="breakdown-container">
+                        <h3 class="breakdown-title">Results Breakdown</h3>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Performance Metrics</span>
+                                <span>2/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 40%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="score-bar">
+                            <div class="score-bar-header">
+                                <span>Measurement</span>
+                                <span>1/5</span>
+                            </div>
+                            <div class="score-bar-bg">
+                                <div class="score-bar-fill" style="width: 20%"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="recommendations">
+                            <h3>Results Recommendations</h3>
+                            <ul>
+                                <li>Configure analytics properly with event tracking</li>
+                                <li>Establish regular reporting cycles and data validation processes</li>
+                                <li>Define detailed metrics like conversion rates and customer acquisition costs</li>
+                                <li>Compare performance against industry benchmarks</li>
+                                <li>Use data to continuously optimize strategies and execution</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Score interpretation -->
+        <div class="dashboard-card">
+            <h3>Score Interpretation</h3>
+            <div class="score-interpretation">
+                <div class="score-level">
+                    <div class="score-dot" style="background-color: rgba(240, 91, 40, 0.2); color: #333;">1</div>
+                    <span>Poor</span>
+                </div>
+                <div class="score-level">
+                    <div class="score-dot" style="background-color: rgba(240, 91, 40, 0.4); color: #333;">2</div>
+                    <span>Below Average</span>
+                </div>
+                <div class="score-level">
+                    <div class="score-dot" style="background-color: rgba(240, 91, 40, 0.6); color: white;">3</div>
+                    <span>Average</span>
+                </div>
+                <div class="score-level">
+                    <div class="score-dot" style="background-color: rgba(240, 91, 40, 0.8); color: white;">4</div>
+                    <span>Good</span>
+                </div>
+                <div class="score-level">
+                    <div class="score-dot" style="background-color: rgba(240, 91, 40, 1); color: white;">5</div>
+                    <span>Excellent</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 In Marketing We Trust. All rights reserved.
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
