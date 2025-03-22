@@ -1,0 +1,978 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Boomerang Car Rentals - Recommended Search Everywhere Scope</title>
+    <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* Base styles */
+        :root {
+            --orange: #F05B28;
+            --dark-bg: #333333;
+            --light-bg: #F6F2E6;
+            --text: #333333;
+            --light-text: #FFFFFF;
+            --blue: #2D6CDF;
+            --green: #37A169;
+            --purple: #8A63D2;
+            --teal: #2A9D8F;
+        }
+        
+        body {
+            font-family: 'Archivo', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Make headings extra bold */
+        h1, h2, h3, h4, h5, h6 {
+            font-weight: 800; /* Extra bold */
+        }
+        
+        /* Orange top bar */
+        .orange-bar {
+            height: 20px;
+            background-color: var(--orange);
+        }
+        
+        /* Header styling */
+        .header {
+            background-color: var(--dark-bg);
+            padding: 0;
+            margin: 0;
+        }
+        
+        .header-container {
+            display: flex;
+            align-items: center;
+            padding: 25px 15px;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo {
+            width: 40px;
+            height: 44px;
+        }
+        
+        .logo-text {
+            margin-left: 15px;
+            color: var(--light-text);
+        }
+        
+        .logo-text .line1 {
+            font-size: 14px;
+        }
+        
+        .logo-text .line2 {
+            font-size: 18px;
+            font-weight: 800;
+        }
+        
+        .report-title {
+            margin-left: 30px;
+            color: var(--light-text);
+            font-size: 20px;
+            font-weight: 800;
+        }
+        
+        /* Main content area */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px 20px;
+        }
+        
+        /* Report card styling */
+        .report-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            padding: 30px;
+            margin-bottom: 25px;
+        }
+        
+        /* Report header */
+        .report-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 30px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 20px;
+        }
+        
+        .client-info h1 {
+            font-size: 28px;
+            margin: 0 0 5px 0;
+        }
+        
+        .client-info p {
+            margin: 0;
+            color: #666;
+        }
+        
+        .date-info {
+            text-align: right;
+        }
+        
+        /* Executive summary */
+        .executive-summary {
+            background-color: var(--dark-bg);
+            color: var(--light-text);
+            padding: 25px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+        }
+        
+        .executive-summary h2 {
+            color: var(--light-text);
+            margin-top: 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            padding-bottom: 10px;
+        }
+        
+        /* Section styling */
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            font-size: 24px;
+            border-bottom: 2px solid var(--orange);
+            padding-bottom: 10px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .section h3 {
+            font-size: 20px;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        
+        .section h4 {
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        
+        /* Phase cards styling */
+        .phases-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .phase-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        
+        .phase-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .phase-header {
+            padding: 15px 20px;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .phase-1 .phase-header {
+            background-color: var(--blue);
+        }
+        
+        .phase-2 .phase-header {
+            background-color: var(--orange);
+        }
+        
+        .phase-3 .phase-header {
+            background-color: var(--green);
+        }
+        
+        .phase-4 .phase-header {
+            background-color: var(--purple);
+        }
+        
+        .phase-content {
+            padding: 20px;
+        }
+        
+        .phase-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+        
+        .phase-timeline {
+            display: inline-block;
+            background-color: #f0f0f0;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .phase-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .phase-card li {
+            margin-bottom: 8px;
+            font-size: 15px;
+        }
+        
+        /* Activities and deliverables */
+        .activities-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .activity-card {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            border-left: 4px solid var(--orange);
+        }
+        
+        .activity-card h4 {
+            margin-top: 0;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+        
+        .activity-card ul {
+            margin: 0;
+            padding-left: 20px;
+        }
+        
+        .activity-card li {
+            margin-bottom: 8px;
+        }
+        
+        /* Timeline visualization */
+        .timeline-container {
+            margin: 40px 0;
+            position: relative;
+        }
+        
+        .timeline {
+            height: 6px;
+            background-color: #e0e0e0;
+            border-radius: 3px;
+            position: relative;
+        }
+        
+        .timeline-marker {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            top: -7px;
+            transform: translateX(-50%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .timeline-segment {
+            position: absolute;
+            height: 6px;
+            top: 0;
+            border-radius: 3px;
+        }
+        
+        .timeline-label {
+            position: absolute;
+            top: 20px;
+            transform: translateX(-50%);
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            width: 120px;
+        }
+        
+        .timeline-weeks {
+            position: absolute;
+            bottom: -25px;
+            font-size: 12px;
+            color: #666;
+        }
+        
+        /* Impact visualization */
+        .impact-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .impact-card {
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .impact-icon {
+            width: 60px;
+            height: 60px;
+            margin: 0 auto 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+            font-size: 24px;
+        }
+        
+        .impact-value {
+            font-size: 28px;
+            font-weight: 800;
+            margin: 0 0 5px;
+            color: var(--orange);
+        }
+        
+        .impact-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 0 0 10px;
+        }
+        
+        .impact-description {
+            font-size: 14px;
+            color: #666;
+            margin: 0;
+        }
+        
+        /* Graphic elements */
+        .graphic-container {
+            display: flex;
+            justify-content: center;
+            margin: 30px 0;
+        }
+        
+        .process-graphic {
+            width: 100%;
+            max-width: 800px;
+            height: auto;
+            background-color: white;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .process-steps {
+            display: flex;
+            position: relative;
+            justify-content: space-between;
+        }
+        
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 150px;
+            z-index: 2;
+        }
+        
+        .step-circle {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 15px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+        }
+        
+        .step-title {
+            text-align: center;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        
+        .process-line {
+            position: absolute;
+            height: 4px;
+            background-color: #e0e0e0;
+            top: 30px;
+            left: 75px;
+            right: 75px;
+            z-index: 1;
+        }
+        
+        /* Call to action */
+        .cta-container {
+            background-color: var(--dark-bg);
+            color: white;
+            border-radius: 8px;
+            padding: 30px;
+            text-align: center;
+            margin: 40px 0 20px;
+        }
+        
+        .cta-title {
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 0 15px;
+        }
+        
+        .cta-description {
+            font-size: 16px;
+            max-width: 700px;
+            margin: 0 auto 25px;
+        }
+        
+        .cta-button {
+            display: inline-block;
+            background-color: var(--orange);
+            color: white;
+            border: none;
+            border-radius: 4px;
+            padding: 12px 25px;
+            font-family: 'Archivo', sans-serif;
+            font-weight: 600;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        
+        .cta-button:hover {
+            opacity: 0.9;
+        }
+        
+        /* Back button */
+        .back-link {
+            display: inline-block;
+            margin-bottom: 20px;
+            color: var(--orange);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: #666;
+        }
+        
+        /* Print specific styles */
+        @media print {
+            .orange-bar, .back-link, .cta-container, .footer {
+                display: none;
+            }
+            
+            body {
+                background-color: white;
+            }
+            
+            .container, .report-card {
+                box-shadow: none;
+                padding: 0;
+                margin: 0;
+            }
+            
+            .phase-card {
+                break-inside: avoid;
+            }
+            
+            .timeline-container, .impact-container, .graphic-container {
+                break-inside: avoid;
+            }
+        }
+        
+        /* Responsive design */
+        @media (max-width: 768px) {
+            .report-header {
+                flex-direction: column;
+            }
+            
+            .date-info {
+                text-align: left;
+                margin-top: 15px;
+            }
+            
+            .header-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .report-title {
+                margin-left: 0;
+                margin-top: 10px;
+            }
+            
+            .phases-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .activities-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .impact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .process-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .process-step {
+                margin-bottom: 30px;
+            }
+            
+            .process-line {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Orange bar at the top -->
+    <div class="orange-bar"></div>
+    
+    <!-- Header with logo -->
+    <div class="header">
+        <div class="header-container">
+            <div class="logo-container">
+                <!-- Logo - using embedded SVG for reliability -->
+                <svg width="40" height="44" viewBox="0 0 225 260" xmlns="http://www.w3.org/2000/svg" class="logo">
+                    <path d="M112.5 0L225 64.9V194.8L112.5 259.7L0 194.8V64.9L112.5 0Z" fill="#F05B28"/>
+                    <path d="M77 113.5H149M77 146.5H149M77 113.5H149V146.5H77V113.5Z" stroke="white" stroke-width="12"/>
+                </svg>
+                <div class="logo-text">
+                    <div class="line1">In Marketing</div>
+                    <div class="line2">We Trust</div>
+                </div>
+            </div>
+            <div class="report-title">Search Everywhere Performance Assessment</div>
+        </div>
+    </div>
+    
+    <!-- Main content area -->
+    <div class="container">
+        <!-- Back to dashboard link -->
+        <a href="index.html" class="back-link">← Back to Dashboard</a>
+        
+        <!-- Report content card -->
+        <div class="report-card">
+            <!-- Report header -->
+            <div class="report-header">
+                <div class="client-info">
+                    <h1>Recommended Search Everywhere Scope</h1>
+                    <p>Boomerang Car Rentals</p>
+                </div>
+                <div class="date-info">
+                    <p>Proposal Date: March 22, 2025</p>
+                    <button class="btn cta-button" onclick="window.print()">Download Proposal</button>
+                </div>
+            </div>
+            
+            <!-- Executive Summary -->
+            <div class="executive-summary">
+                <h2>Scope of Work Overview</h2>
+                <p>Based on our comprehensive Search Everywhere Performance Assessment, we've developed a strategic improvement plan for Boomerang Car Rentals. This plan addresses critical weaknesses in your online search performance while leveraging industry-specific opportunities in the car rental market.</p>
+                <p>Our structured, four-phase approach will transform your search marketing performance across Universal Search Destinations (USDs), Extended Search Destinations (ESDs), and Search Interactions (SIs), resulting in increased visibility, bookings, and revenue.</p>
+            </div>
+            
+            <!-- Objective and Client Profile -->
+            <div class="section">
+                <h2>Objective</h2>
+                <p>To transform Boomerang Car Rentals' search marketing performance by addressing critical gaps in strategy, execution, and measurement, ultimately increasing organic traffic, engagement, and ROI across all search channels, with special focus on travel-specific platforms and mobile search optimization.</p>
+                
+                <h3>Current Performance Snapshot</h3>
+                <p>Based on our assessment, Boomerang Car Rentals currently scores 1.64/5 overall, with particularly low scores in these critical areas:</p>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Critical Weaknesses</h4>
+                        <ul>
+                            <li><strong>Extended Search Destinations (1/5)</strong> - No strategy for travel platforms like Kayak or Expedia</li>
+                            <li><strong>Technology Utilization (1/5)</strong> - Lack of specialized SEO and analytics tools</li>
+                            <li><strong>Measurement (1/5)</strong> - Poor analytics configuration and data usage</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Key Opportunities</h4>
+                        <ul>
+                            <li><strong>Location-Based Search</strong> - Optimize for "car rental near me" queries</li>
+                            <li><strong>Vehicle Visualization</strong> - Create high-quality assets to showcase fleet</li>
+                            <li><strong>Travel Platform Integration</strong> - Connect with major travel search engines</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Implementation Phases -->
+            <div class="section">
+                <h2>Implementation Phases</h2>
+                <p>Our approach follows a structured four-phase implementation plan, with each phase building on the previous to create sustainable improvement in your search performance.</p>
+                
+                <!-- Timeline visualization -->
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-segment" style="left: 0; width: 25%; background-color: #2D6CDF;"></div>
+                        <div class="timeline-segment" style="left: 25%; width: 50%; background-color: #F05B28;"></div>
+                        <div class="timeline-segment" style="left: 75%; width: 25%; background-color: #37A169;"></div>
+                        
+                        <div class="timeline-marker" style="left: 0%; background-color: #2D6CDF;">1</div>
+                        <div class="timeline-marker" style="left: 25%; background-color: #F05B28;">2</div>
+                        <div class="timeline-marker" style="left: 75%; background-color: #37A169;">3</div>
+                        <div class="timeline-marker" style="left: 100%; background-color: #8A63D2;">4</div>
+                        
+                        <div class="timeline-label" style="left: 12.5%;">Strategy Development</div>
+                        <div class="timeline-label" style="left: 50%;">Execution Enhancement</div>
+                        <div class="timeline-label" style="left: 87.5%;">Measurement & Optimization</div>
+                        
+                        <div class="timeline-weeks" style="left: 0%;">Week 0</div>
+                        <div class="timeline-weeks" style="left: 25%;">Week 4</div>
+                        <div class="timeline-weeks" style="left: 75%;">Week 12</div>
+                        <div class="timeline-weeks" style="left: 100%;">Week 16+</div>
+                    </div>
+                </div>
+                
+                <!-- Phase cards -->
+                <div class="phases-container">
+                    <div class="phase-card phase-1">
+                        <div class="phase-header">Phase 1</div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Strategy Development</h3>
+                            <div class="phase-timeline">Weeks 1-4</div>
+                            <ul>
+                                <li>Car rental market research</li>
+                                <li>Location-specific strategy</li>
+                                <li>Vehicle category mapping</li>
+                                <li>Traveler persona development</li>
+                                <li>Search journey mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-card phase-2">
+                        <div class="phase-header">Phase 2</div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Execution Enhancement</h3>
+                            <div class="phase-timeline">Weeks 5-12</div>
+                            <ul>
+                                <li>Vehicle showcase assets</li>
+                                <li>Travel platform integration</li>
+                                <li>Team training & specialization</li>
+                                <li>Mobile booking optimization</li>
+                                <li>Location page development</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-card phase-3">
+                        <div class="phase-header">Phase 3</div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Measurement & Optimization</h3>
+                            <div class="phase-timeline">Weeks 13-16</div>
+                            <ul>
+                                <li>Booking funnel tracking</li>
+                                <li>Conversion optimization</li>
+                                <li>Vehicle-specific analytics</li>
+                                <li>ROI calculation framework</li>
+                                <li>Competitive benchmarking</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="phase-card phase-4">
+                        <div class="phase-header">Phase 4</div>
+                        <div class="phase-content">
+                            <h3 class="phase-title">Ongoing Implementation</h3>
+                            <div class="phase-timeline">Continuous</div>
+                            <ul>
+                                <li>Monthly performance reviews</li>
+                                <li>Seasonal strategy updates</li>
+                                <li>Market trend adaptation</li>
+                                <li>Continuous team coaching</li>
+                                <li>New platform integration</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Detailed Phase Activities -->
+            <div class="section">
+                <h2>Phase 1: Strategy Development</h2>
+                <p>In this critical first phase, we'll develop a comprehensive search strategy tailored specifically for the car rental market, focusing on location-based search and traveler intent.</p>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Key Activities</h4>
+                        <ul>
+                            <li><strong>Market Research:</strong> Analyze key search destinations and interactions in the car rental industry</li>
+                            <li><strong>Objective Setting:</strong> Replace vague goals with specific targets (e.g., "increase organic traffic by 30% in six months")</li>
+                            <li><strong>Search Moment Map:</strong> Map strategies to traveler intent across discovery, consideration, and booking stages</li>
+                            <li><strong>Location Strategy:</strong> Develop location-specific search strategies for each rental office</li>
+                            <li><strong>Resource Allocation:</strong> Plan budget, personnel, and tools for each channel</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Comprehensive Search Strategy document</li>
+                            <li>Traveler Search Journey Map</li>
+                            <li>Competitive analysis report</li>
+                            <li>Location-specific SEO plans</li>
+                            <li>Resource allocation plan</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h2>Phase 2: Execution Enhancement</h2>
+                <p>During this implementation phase, we'll strengthen your ability to execute search strategies through upgraded assets, technology, team skills, and workflows.</p>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Key Activities</h4>
+                        <ul>
+                            <li><strong>Asset Management:</strong> Create high-quality vehicle showcases, location guides, and platform-specific content</li>
+                            <li><strong>Technology Utilization:</strong> Implement specialized tools and AI-driven solutions for rental optimization</li>
+                            <li><strong>Team Capabilities:</strong> Provide training in travel-specific SEO, paid media, and analytics</li>
+                            <li><strong>Process and Workflow:</strong> Document workflows for location updates, seasonal promotions, and fleet changes</li>
+                            <li><strong>Mobile Optimization:</strong> Enhance mobile booking experience for on-the-go travelers</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Vehicle asset library and content calendar</li>
+                            <li>Technology implementation roadmap</li>
+                            <li>Team training program and specialist onboarding</li>
+                            <li>Documented processes and workflow diagrams</li>
+                            <li>Mobile UX enhancement report</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h2>Phase 3: Measurement & Optimization</h2>
+                <p>In this phase, we'll establish robust measurement frameworks to track performance and enable data-driven optimization of your search marketing efforts.</p>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Key Activities</h4>
+                        <ul>
+                            <li><strong>Analytics Configuration:</strong> Fully configure GA4 with booking funnel tracking and revenue attribution</li>
+                            <li><strong>Performance Metrics:</strong> Define and track detailed metrics for each vehicle category and location</li>
+                            <li><strong>Data Validation:</strong> Implement processes to ensure accuracy in tracking and reporting</li>
+                            <li><strong>Optimization Framework:</strong> Establish methodology for ongoing optimization based on data insights</li>
+                            <li><strong>Decision Making:</strong> Train team on using data to drive marketing decisions</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Fully configured GA4 setup with event tracking</li>
+                            <li>Custom performance dashboard for car rental metrics</li>
+                            <li>Data validation and reporting systems</li>
+                            <li>ROI calculation models for search channels</li>
+                            <li>Data-driven optimization playbook</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <h2>Phase 4: Ongoing Implementation</h2>
+                <p>The final phase establishes a framework for continuous improvement and adaptation to changing market conditions and traveler preferences.</p>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Key Activities</h4>
+                        <ul>
+                            <li><strong>Campaign Management:</strong> Execute strategies across all search channels and platforms</li>
+                            <li><strong>Performance Monitoring:</strong> Track real-time metrics and adjust tactics as needed</li>
+                            <li><strong>Strategic Reviews:</strong> Conduct quarterly assessments of strategy effectiveness</li>
+                            <li><strong>Market Adaptation:</strong> Adjust to seasonal trends and competitive changes</li>
+                            <li><strong>Team Development:</strong> Provide ongoing coaching and skill enhancement</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Deliverables</h4>
+                        <ul>
+                            <li>Monthly performance reports with actionable insights</li>
+                            <li>Quarterly strategy review documents</li>
+                            <li>Seasonal marketing calendar updates</li>
+                            <li>Competitive position reports</li>
+                            <li>Team capability enhancement plan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Process Graphic -->
+            <div class="section">
+                <h2>Our Approach</h2>
+                <p>Our methodology follows a continuous improvement cycle that ensures sustainable growth in your search performance:</p>
+                
+                <div class="graphic-container">
+                    <div class="process-graphic">
+                        <div class="process-steps">
+                            <div class="process-line"></div>
+                            
+                            <div class="process-step">
+                                <div class="step-circle" style="background-color: #2D6CDF;">1</div>
+                                <div class="step-title">Analyze & Assess</div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-circle" style="background-color: #F05B28;">2</div>
+                                <div class="step-title">Strategize & Plan</div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-circle" style="background-color: #37A169;">3</div>
+                                <div class="step-title">Implement & Execute</div>
+                            </div>
+                            
+                            <div class="process-step">
+                                <div class="step-circle" style="background-color: #8A63D2;">4</div>
+                                <div class="step-title">Measure & Optimize</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Potential Impact -->
+            <div class="section">
+                <h2>Potential Impact</h2>
+                <p>Based on our experience and analysis, implementing this strategic plan can deliver significant improvements in key performance areas:</p>
+                
+                <div class="impact-container">
+                    <div class="impact-card">
+                        <div class="impact-icon" style="background-color: #2D6CDF;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 10H5V16H3V10ZM11 4H13V16H11V4ZM7 7H9V16H7V7ZM15 13H17V16H15V13ZM19 9H21V16H19V9Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-value">30-50%</h3>
+                        <h4 class="impact-title">Organic Traffic Increase</h4>
+                        <p class="impact-description">Through enhanced search visibility across platforms</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon" style="background-color: #F05B28;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 2L1 12H4V21H11V15H13V21H20V12H23L12 2Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-value">20-30%</h3>
+                        <h4 class="impact-title">Engagement Improvement</h4>
+                        <p class="impact-description">More interactions with your vehicle listings and content</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon" style="background-color: #37A169;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M21 18V21H3V18H21ZM6.596 3.904L8.01 5.318L4.828 8.5L8.01 11.682L6.596 13.096L2 8.5L6.596 3.904ZM17.404 3.904L22 8.5L17.404 13.096L15.99 11.682L19.172 8.5L15.99 5.318L17.404 3.904Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-value">20%</h3>
+                        <h4 class="impact-title">Reduced Acquisition Cost</h4>
+                        <p class="impact-description">More efficient marketing spend allocation</p>
+                    </div>
+                    
+                    <div class="impact-card">
+                        <div class="impact-icon" style="background-color: #8A63D2;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M16 2V4H20.586L9.301 15.285L6 11.984L1.707 16.277L3.121 17.691L6 14.813L9.299 18.113L22 5.413V10H24V2H16Z" fill="white"/>
+                            </svg>
+                        </div>
+                        <h3 class="impact-value">25-40%</h3>
+                        <h4 class="impact-title">ROI Improvement</h4>
+                        <p class="impact-description">Better returns on search marketing investments</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Budget and Timeline -->
+            <div class="section">
+                <h2>Timeline and Investment</h2>
+                
+                <div class="activities-container">
+                    <div class="activity-card">
+                        <h4>Timeline</h4>
+                        <ul>
+                            <li><strong>Total Implementation:</strong> 16 weeks for initial setup and optimization</li>
+                            <li><strong>Phase 1:</strong> 4 weeks for strategy development</li>
+                            <li><strong>Phase 2:</strong> 8 weeks for execution enhancement</li>
+                            <li><strong>Phase 3:</strong> 4 weeks for measurement setup</li>
+                            <li><strong>Phase 4:</strong> Ongoing monthly support</li>
+                        </ul>
+                    </div>
+                    <div class="activity-card">
+                        <h4>Investment Considerations</h4>
+                        <ul>
+                            <li><strong>Professional Services:</strong> Strategy, implementation, and ongoing support</li>
+                            <li><strong>Technology:</strong> SEO tools, analytics platforms, reporting dashboards</li>
+                            <li><strong>Content Production:</strong> Vehicle assets, location content, promotional materials</li>
+                            <li><strong>Team Development:</strong> Training, workshop facilitation, capability building</li>
+                            <li><strong>Optional Add-ons:</strong> Media budget for paid search campaigns</li>
+                        </ul>
+                    </div>
+                </div>
+                <p>A detailed investment proposal will be provided based on the specific scope and scale of implementation required for Boomerang Car Rentals' unique needs and objectives.</p>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="cta-container">
+                <h3 class="cta-title">Ready to Transform Your Search Performance?</h3>
+                <p class="cta-description">Let our experienced team guide Boomerang Car Rentals through this strategic transformation process. With our proven methodology and industry expertise, we'll help you achieve measurable results that directly impact your bottom line.</p>
+                <button class="cta-button" onclick="window.print()">Download This Proposal</button>
+            </div>
+            
+            <!-- Conclusion -->
+            <div class="section">
+                <h2>Why Choose In Marketing We Trust</h2>
+                <p>Our team specializes in search marketing for the travel and transportation industry. We understand the unique challenges and opportunities in the car rental market, from seasonal fluctuations to location-specific strategies and the competitive landscape of online travel platforms.</p>
+                <p>With our structured approach, transparent reporting, and focus on measurable results, we're committed to delivering real business impact through improved search performance. Our expertise spans all aspects of search marketing, from technical SEO to content strategy and analytics implementation.</p>
+                <p>We look forward to partnering with Boomerang Car Rentals to transform your online presence and drive sustainable growth through optimized search performance.</p>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        © 2025 In Marketing We Trust. All rights reserved.
+    </div>
+</body>
+</html>
