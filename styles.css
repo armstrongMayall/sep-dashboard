@@ -34,14 +34,14 @@ h1, h2, h3, h4, h5, h6 {
 /* Header styling */
 .header {
     background-color: var(--dark-bg);
-    padding: 0;
+    padding: 50px 0;
     margin: 0;
 }
 
 .header-container {
     display: flex;
     align-items: center;
-    padding: 50px 0;
+    padding: 15px 0;
 }
 
 .container {
