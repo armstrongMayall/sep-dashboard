@@ -334,5 +334,34 @@
     <div class="footer">
         © 2025 In Marketing We Trust. All rights reserved.
     </div>
+
+    <script>
+    // Get current page filename
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Get all nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Loop through links to find the current page
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        
+        // If this is the current page, add active class
+        if (currentPage === linkHref || 
+            (currentPage === '' && linkHref === 'index.html') || 
+            (currentPage === '/' && linkHref === 'index.html')) {
+            link.parentElement.classList.add('active');
+        }
+        
+        // Add click handler to reset colors
+        link.addEventListener('click', function() {
+            // Remove active class from all links
+            navLinks.forEach(l => l.parentElement.classList.remove('active'));
+            // Add active class to clicked link
+            this.parentElement.classList.add('active');
+        });
+    });
+</script>
+    
 </body>
 </html>
