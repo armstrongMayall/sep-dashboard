@@ -38,16 +38,102 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0;
 }
 
-/* Target the header directly for more specificity */
-header, div.header {
-    padding-top: 25px !important;
-    padding-bottom: 25px !important;
-}
 
+/* Navigation styles */
 .header-container {
     display: flex;
     align-items: center;
-    padding: 25px 15px; /* Increased padding */
+    justify-content: space-between;
+    padding: 20px 15px;
+}
+
+.left-section {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    margin-right: 30px;
+}
+
+.main-nav {
+    margin-left: auto;
+}
+
+.nav-menu {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-item {
+    margin-left: 25px;
+}
+
+.nav-link {
+    color: var(--light-bg); /* Cream color */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+    color: var(--orange); /* Orange on hover */
+    font-weight: 700; /* Bold on hover */
+    text-decoration: none;
+}
+
+.nav-item.active .nav-link {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.report-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--light-text);
+    margin: 0;
+}
+
+/* Responsive adjustments */
+@media (max-width: 992px) {
+    .header-container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .left-section {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .logo-container {
+        margin-bottom: 10px;
+    }
+    
+    .report-title {
+        margin: 10px 0;
+    }
+    
+    .main-nav {
+        margin-left: 0;
+        margin-top: 15px;
+        width: 100%;
+    }
+    
+    .nav-menu {
+        flex-wrap: wrap;
+    }
+    
+    .nav-item {
+        margin-left: 0;
+        margin-right: 20px;
+        margin-bottom: 10px;
+    }
 }
 
 /* Additional header container targeting for index.html */
