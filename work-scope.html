@@ -575,6 +575,11 @@
             <div class="report-title">Search Everywhere Performance Assessment</div>
         </div>
     </div>
+
+
+
+
+
     
     <!-- Main content area -->
     <div class="container">
@@ -583,17 +588,39 @@
         
         <!-- Report content card -->
         <div class="report-card">
-            <!-- Report header -->
-            <div class="report-header">
-                <div class="client-info">
-                    <h1>Recommended Search Everywhere Scope</h1>
-                    <p>Boomerang Car Rentals</p>
-                </div>
-                <div class="date-info">
-                    <p>Proposal Date: March 22, 2025</p>
-                    <button class="btn cta-button" onclick="window.print()">Download Proposal</button>
+
+
+            <!-- Orange bar at the top -->
+<div class="orange-bar"></div>
+
+<!-- Header with logo and navigation -->
+<div class="header">
+    <div class="container header-container">
+        <div class="left-section">
+            <div class="logo-container">
+                <!-- Logo - using embedded SVG for reliability -->
+                <svg width="40" height="44" viewBox="0 0 225 260" xmlns="http://www.w3.org/2000/svg" class="logo">
+                    <path d="M112.5 0L225 64.9V194.8L112.5 259.7L0 194.8V64.9L112.5 0Z" fill="#F05B28"/>
+                    <path d="M77 113.5H149M77 146.5H149M77 113.5H149V146.5H77V113.5Z" stroke="white" stroke-width="12"/>
+                </svg>
+                <div class="logo-text">
+                    <div class="line1">In Marketing</div>
+                    <div class="line2">We Trust</div>
                 </div>
             </div>
+            
+            <h1 class="report-title">Search Everywhere Performance Assessment</h1>
+        </div>
+        
+        <nav class="main-nav">
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="index.html" class="nav-link">Assessment Overview</a></li>
+                <li class="nav-item"><a href="full-report.html" class="nav-link">Full Report</a></li>
+                <li class="nav-item"><a href="scope-of-work.html" class="nav-link">Scope of Work</a></li>
+            </ul>
+        </nav>
+    </div>
+</div>
             
             <!-- Executive Summary -->
             <div class="executive-summary">
@@ -965,5 +992,32 @@
     <div class="footer">
         © 2025 In Marketing We Trust. All rights reserved.
     </div>
+<script>
+    // Get current page filename
+    const currentPage = window.location.pathname.split('/').pop();
+    
+    // Get all nav links
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    // Loop through links to find the current page
+    navLinks.forEach(link => {
+        const linkHref = link.getAttribute('href');
+        
+        // If this is the current page, add active class
+        if (currentPage === linkHref || 
+            (currentPage === '' && linkHref === 'index.html') || 
+            (currentPage === '/' && linkHref === 'index.html')) {
+            link.parentElement.classList.add('active');
+        }
+        
+        // Add click handler to reset colors
+        link.addEventListener('click', function() {
+            // Remove active class from all links
+            navLinks.forEach(l => l.parentElement.classList.remove('active'));
+            // Add active class to clicked link
+            this.parentElement.classList.add('active');
+        });
+    });
+</script>
 </body>
 </html>
