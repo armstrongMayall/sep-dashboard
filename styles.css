@@ -34,7 +34,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Header styling */
 .header {
     background-color: var(--dark-bg);
-    padding: 0 50px;
+    padding: 15px 50px;
     margin: 0;
 }
 
@@ -47,7 +47,7 @@ h1, h2, h3, h4, h5, h6 {
 .container {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 20px;
+    padding: 20px 20px;
 }
 
 .logo-container {
